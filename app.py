@@ -180,7 +180,7 @@ elif seccion == "Ejercicio 3":
         "indicador clave para evaluar la rentabilidad mínima exigida de un proyecto de inversión."
     )
 
-    st.markdown("### 🔢 Parámetros de entrada")
+    st.markdown("###  Parámetros de entrada")
     col1, col2 = st.columns(2)
     with col1:
         deuda = st.number_input("Deuda (S/)", min_value=0.0, value=100000.0, step=1000.0)
@@ -217,7 +217,7 @@ elif seccion == "Ejercicio 3":
             st.error(f"Error en los datos ingresados: {e}")
 
     st.markdown("---")
-    st.markdown("### 🕓 Histórico de resultados")
+    st.markdown("###  Histórico de resultados")
     if len(st.session_state.historial_wacc) == 0:
         st.info("Aún no se han calculado resultados.")
     else:
@@ -242,7 +242,7 @@ elif seccion == "Ejercicio 4":
         st.session_state.proyectos = {}  
 
     tab_crear, tab_leer, tab_actualizar, tab_eliminar = st.tabs(
-        ["➕ Crear", "📋 Leer", "✏️ Actualizar", "🗑️ Eliminar"]
+        ["➕ Crear", " Leer", " Actualizar", " Eliminar"]
     )
 
 
@@ -325,7 +325,7 @@ elif seccion == "Ejercicio 4":
             st.info("No hay proyectos para eliminar.")
         else:
             nombre_del = st.selectbox("Selecciona un proyecto a eliminar", list(st.session_state.proyectos.keys()), key="del_sel")
-            if st.button("🗑️ Eliminar proyecto", type="primary"):
+            if st.button(" Eliminar proyecto", type="primary"):
                 del st.session_state.proyectos[nombre_del]
                 st.success(f"Proyecto '{nombre_del}' eliminado.")
                 st.rerun()
