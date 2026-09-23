@@ -5,23 +5,17 @@ import pandas as pd
 from libreria_funciones_proyecto1 import calcular_wacc
 from libreria_clases_proyecto1 import ProyectoInversion
 
-# =========================================================
 # CONFIGURACIÓN GENERAL
-# =========================================================
 st.set_page_config(page_title="Proyecto 1 - Python Fundamentals", page_icon="🐍", layout="centered")
 
-# =========================================================
 # NAVEGACIÓN
-# =========================================================
-st.sidebar.title("📂 Navegación")
+st.sidebar.title(" Navegación")
 seccion = st.sidebar.selectbox(
     "Selecciona una sección",
     ["Home", "Ejercicio 1", "Ejercicio 2", "Ejercicio 3", "Ejercicio 4"]
 )
 
-# =========================================================
 # HOME
-# =========================================================
 if seccion == "Home":
     st.title("Proyecto Aplicado en Streamlit")
     st.subheader("Fundamentos de Programación - Módulo 1")
@@ -38,7 +32,7 @@ if seccion == "Home":
 
     st.markdown("---")
 
-    st.markdown("### 📝 Descripción del proyecto")
+    st.markdown("###  Descripción del proyecto")
     st.write(
         "Esta aplicación integra los conceptos fundamentales del Módulo 1: variables, "
         "estructuras de datos, control de flujo, funciones, programación funcional y "
@@ -48,7 +42,7 @@ if seccion == "Home":
         "y Tesorería."
     )
 
-    st.markdown("### ⚙️ Tecnologías utilizadas")
+    st.markdown("###  Tecnologías utilizadas")
     st.markdown(
         """
         - **Python 3**
@@ -58,9 +52,9 @@ if seccion == "Home":
         """
     )
 
-# =========================================================
+
 # EJERCICIO 1 - FLUJO DE CAJA CON LISTAS
-# =========================================================
+
 elif seccion == "Ejercicio 1":
     st.title("Ejercicio 1: Flujo de caja con listas")
     st.markdown(
@@ -80,7 +74,7 @@ elif seccion == "Ejercicio 1":
         with col3:
             valor = st.number_input("Valor (S/)", min_value=0.0, step=10.0)
 
-        agregar = st.form_submit_button("➕ Agregar movimiento")
+        agregar = st.form_submit_button("+ Agregar movimiento")
 
     if agregar:
         if concepto.strip() == "":
@@ -94,7 +88,7 @@ elif seccion == "Ejercicio 1":
             st.success(f"Movimiento '{concepto}' agregado correctamente.")
 
     st.markdown("---")
-    st.markdown("### 📋 Movimientos registrados")
+    st.markdown("###  Movimientos registrados")
 
     if len(st.session_state.movimientos) == 0:
         st.info("Aún no hay movimientos registrados.")
@@ -112,17 +106,17 @@ elif seccion == "Ejercicio 1":
         col3.metric("Saldo final", f"S/ {saldo_final:,.2f}")
 
         if saldo_final >= 0:
-            st.success("✅ El flujo de caja está A FAVOR.")
+            st.success(" El flujo de caja está A FAVOR.")
         else:
-            st.error("⚠️ El flujo de caja está EN CONTRA.")
+            st.error(" El flujo de caja está EN CONTRA.")
 
-        if st.button("🗑️ Limpiar todos los movimientos"):
+        if st.button(" Limpiar todos los movimientos"):
             st.session_state.movimientos = []
             st.rerun()
 
-# =========================================================
+
 # EJERCICIO 2 - REGISTRO CON NUMPY, ARRAYS Y DATAFRAME
-# =========================================================
+
 elif seccion == "Ejercicio 2":
     st.title("Ejercicio 2: Registro de productos con NumPy y DataFrame")
     st.markdown(
@@ -131,7 +125,7 @@ elif seccion == "Ejercicio 2":
     )
 
     if "registros_np" not in st.session_state:
-        # Cada fila: [nombre, categoria, precio, cantidad, total] -> almacenado como objeto (dtype=object)
+
         st.session_state.registros_np = np.empty((0, 5), dtype=object)
 
     with st.form("form_producto", clear_on_submit=True):
@@ -143,7 +137,7 @@ elif seccion == "Ejercicio 2":
             precio = st.number_input("Precio unitario (S/)", min_value=0.0, step=1.0)
             cantidad = st.number_input("Cantidad", min_value=0, step=1)
 
-        agregar_prod = st.form_submit_button("➕ Agregar registro")
+        agregar_prod = st.form_submit_button(" + Agregar registro") 
 
     if agregar_prod:
         if nombre_prod.strip() == "":
@@ -157,7 +151,7 @@ elif seccion == "Ejercicio 2":
             st.success(f"Registro '{nombre_prod}' agregado correctamente.")
 
     st.markdown("---")
-    st.markdown("### 📋 Registros (convertidos a DataFrame)")
+    st.markdown("###  Registros (convertidos a DataFrame)")
 
     if st.session_state.registros_np.shape[0] == 0:
         st.info("Aún no hay registros.")
@@ -175,9 +169,9 @@ elif seccion == "Ejercicio 2":
             st.session_state.registros_np = np.empty((0, 5), dtype=object)
             st.rerun()
 
-# =========================================================
+
 # EJERCICIO 3 - FUNCIÓN DESDE LIBRERÍA EXTERNA (FINANZAS: WACC)
-# =========================================================
+
 elif seccion == "Ejercicio 3":
     st.title("Ejercicio 3: Cálculo del WACC")
     st.markdown(
@@ -199,7 +193,7 @@ elif seccion == "Ejercicio 3":
     if "historial_wacc" not in st.session_state:
         st.session_state.historial_wacc = []
 
-    if st.button("▶️ Ejecutar cálculo de WACC"):
+    if st.button(" Ejecutar cálculo de WACC"):
         try:
             resultado = calcular_wacc(
                 deuda=deuda,
@@ -229,13 +223,13 @@ elif seccion == "Ejercicio 3":
     else:
         st.dataframe(pd.DataFrame(st.session_state.historial_wacc), use_container_width=True)
 
-        if st.button("🗑️ Limpiar histórico"):
+        if st.button(" Limpiar histórico"):
             st.session_state.historial_wacc = []
             st.rerun()
 
-# =========================================================
+
 # EJERCICIO 4 - CLASE DESDE LIBRERÍA EXTERNA CON CRUD (PROYECTO INVERSION)
-# =========================================================
+
 elif seccion == "Ejercicio 4":
     st.title("Ejercicio 4: CRUD de Proyectos de Inversión")
     st.markdown(
@@ -245,13 +239,13 @@ elif seccion == "Ejercicio 4":
     )
 
     if "proyectos" not in st.session_state:
-        st.session_state.proyectos = {}  # nombre -> datos del proyecto
+        st.session_state.proyectos = {}  
 
     tab_crear, tab_leer, tab_actualizar, tab_eliminar = st.tabs(
         ["➕ Crear", "📋 Leer", "✏️ Actualizar", "🗑️ Eliminar"]
     )
 
-    # ---------------- CREAR ----------------
+
     with tab_crear:
         st.subheader("Crear nuevo proyecto")
         nombre_p = st.text_input("Nombre del proyecto", key="crear_nombre")
@@ -277,7 +271,7 @@ elif seccion == "Ejercicio 4":
             except ValueError as e:
                 st.error(f"Error: {e}")
 
-    # ---------------- LEER ----------------
+ 
     with tab_leer:
         st.subheader("Proyectos registrados")
         if len(st.session_state.proyectos) == 0:
@@ -289,7 +283,6 @@ elif seccion == "Ejercicio 4":
                 filas.append(p.resumen())
             st.dataframe(pd.DataFrame(filas), use_container_width=True)
 
-    # ---------------- ACTUALIZAR ----------------
     with tab_actualizar:
         st.subheader("Actualizar un proyecto existente")
         if len(st.session_state.proyectos) == 0:
@@ -314,7 +307,7 @@ elif seccion == "Ejercicio 4":
             if st.button("Actualizar proyecto"):
                 try:
                     nuevos_flujos = [float(x.strip()) for x in nuevos_flujos_texto.split(",") if x.strip() != ""]
-                    # Validación instanciando la clase
+                  
                     ProyectoInversion(nombre_sel, nueva_inversion, nuevos_flujos, nueva_tasa)
                     st.session_state.proyectos[nombre_sel] = {
                         "inversion_inicial": nueva_inversion,
@@ -325,7 +318,7 @@ elif seccion == "Ejercicio 4":
                 except ValueError as e:
                     st.error(f"Error: {e}")
 
-    # ---------------- ELIMINAR ----------------
+ 
     with tab_eliminar:
         st.subheader("Eliminar un proyecto")
         if len(st.session_state.proyectos) == 0:
