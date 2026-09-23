@@ -24,7 +24,7 @@ if seccion == "Home":
 
     col1, col2 = st.columns(2)
     with col1:
-        st.markdown("**Nombre completo:** Rodrigo Avalos")
+        st.markdown("**Nombre completo:** Rodrigo Huarcaya")
         st.markdown("**Módulo:** Python Fundamentals - Especialización en Python for Analytics")
     with col2:
         st.markdown("**Año:** 2026")
